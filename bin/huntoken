@@ -1,0 +1,58 @@
+#!/bin/sh
+# Huntoken 1.6.0b
+# Written by László Németh <nemethl@gyorsposta.hu>
+
+# find filters in huntoken's directory
+PATH=$(dirname $0):$PATH
+
+VERSION="Huntoken 1.6.0b"
+
+while [ "$#" != "0" ]
+do
+    case $1 in
+    -h|--help)
+    echo "$VERSION (c) Németh László"
+    echo "Usage: huntoken <text_input >xml_output
+Options:
+-h, --help: this text
+-r: only sentence boundary detection
+-x: processing without hun_abbrev filter
+-b: break long sentences
+-n: output without XML header and footer
+-e: tokenize English
+-v, --version: version
+License: GNU GPL" 1>&2; exit;;
+    -r) hun_clean | hun_sentence | hun_abbrev | hun_abbrev; exit;;
+    -x) alias hun_abbrev=cat;;
+    -n) alias hun_head=cat;;
+    -e) alias hun_abbrev=hun_abbrev_en;;
+    -b) hun_clean | hun_sentence | hun_abbrev | hun_abbrev | hun_sentclean |
+hun_sentbreak | hun_token | hun_abbrev | hun_head;;
+    -v|--version)
+    echo $VERSION; exit;;
+    *) echo "huntoken: invalid option -- $1"; exit 1;;
+    esac
+    shift
+done
+
+# cleaning text
+hun_clean | 
+
+# sentence boundary detection
+hun_sentence | 
+
+# boundary correction based on data/abbrevations.txt
+hun_abbrev | 
+hun_abbrev | 
+
+# cleaning output
+hun_sentclean |
+
+# word tokenization, and open class token detection
+hun_token |
+
+# boundary correction
+hun_abbrev |
+
+# XML header and footer
+hun_head

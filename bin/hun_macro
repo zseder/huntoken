@@ -1,0 +1,46 @@
+#!/bin/sh
+# make flex source 
+# Usage: hun_macro macro_name data_file
+
+case $# in
+0|1)
+    echo "Usage: hun_macro macro_name data_file"
+    exit 1;
+esac
+
+# megjegyzések kiszûrése
+
+grep "^[^#]" $2 >/tmp/gen.$$
+
+# nagybetûssé alakított kezdõbetûk
+
+tr "a-záéíóöõúüû" "A-ZÁÉÍÓÖÕÚÜÛ" </tmp/gen.$$ | cut -c 1 >/tmp/gen2.$$
+
+# a sorok a kezdõbetû nélkül
+
+cut -c 2- </tmp/gen.$$ >/tmp/gen3.$$
+
+# végig nagybetûs bemenet hozzáadása
+
+# tr "a-záéíóöõúüû" "A-ZÁÉÍÓÖÕÚÜÛ" </tmp/gen.$$ >>/tmp/gen.$$
+
+# nagy kezdõbetûs sorok hozzáillesztése az eredeti állományhoz
+
+paste -d '\0' /tmp/gen2.$$ /tmp/gen3.$$ >>/tmp/gen.$$
+
+
+# makródefiníció elkészítése
+
+echo "/* AZ M4 FORRÁSBÓL ELOÁLLÍTOTT ÁLLOMÁNY, EZT NE MÓDOSÍTSD! */
+define($1," >/tmp/gen2.$$
+sed 's/ /"{SPACE}"/g
+s/^/"/
+s/\.$/"/' /tmp/gen.$$ | sort | uniq | tr '\n' '|' >>/tmp/gen2.$$
+echo '"nyug.")' >>/tmp/gen2.$$
+
+cat /tmp/gen2.$$
+
+rm -f /tmp/gen[0-9].$$
+
+
+#s/\.$/"/' /tmp/gen.$$ | sort | uniq | sed "s/$/	|/" >>/tmp/gen2.$$

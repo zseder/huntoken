@@ -1,0 +1,77 @@
+#!/bin/sh
+# head and body of output
+
+echo '<?xml version="1.0" encoding="ISO-8859-2"?>
+<!DOCTYPE TEI.2 SYSTEM '"'"'teixlite.dtd'"'"' [ ]>
+<TEI.2 TEIform="TEI.2">
+<teiHeader>
+<fileDesc>
+<titleStmt>
+<title>XXX</title>
+<author>XXX</author>
+</titleStmt>
+<publicationStmt>
+<distributor>XXX</distributor>
+<availability status="restricted">
+<p>
+XXX
+</p>
+</availability>
+</publicationStmt>
+<sourceDesc>
+<bibl>
+</bibl>
+</sourceDesc>
+</fileDesc>
+<encodingDesc>
+<projectDesc><p>A iso-latin-2 kódlapon nem szereplő karakterek entity kódolással</p></projectDesc>
+</encodingDesc>
+<profileDesc>
+<creation>
+<name>XXX</name>
+</creation>
+<textClass>
+<classCode>XXX</classCode>
+<keywords>
+<list>
+<item>XXX</item>
+<item>XXX</item>
+</list>
+</keywords>
+</textClass>
+</profileDesc>
+<revisionDesc>
+<change>
+<date>XXX</date>
+<respStmt>
+<name>XXX</name>
+</respStmt>
+<item>XXX</item>
+</change>
+<change>
+<date>2000/11/06</date>
+<respStmt>
+<name>XXX</name>
+</respStmt>
+<item>TEI XML version</item>
+</change>
+<change>
+<date>XXX</date>
+<respStmt>
+<name>XXX</name>
+</respStmt>
+<item>Egyértelműsített TEI XML version 1.3</item>
+</change>
+</revisionDesc>
+</teiHeader>
+<text>
+<body>
+  <p>'
+
+cat
+
+echo '  </p>
+</body>
+</text>
+</TEI.2>
+'

@@ -1,0 +1,23 @@
+#!/bin/sh
+# testing framework
+# Usage: hun_test program source_file_with_test_comments testdir
+
+case $# in
+0|1|2)
+    echo "Usage: hun_test program source_file_with_test_comments testdir"
+    exit 1;
+esac
+
+echo -n "$1 tesztelése... "
+
+temp="$(basename $2)"
+
+grep '/* BE:' $2 | sed 's#^[^/]*/\* BE: \(.*\) \*/.*#\1#' >$3/$temp.BE
+$1 <$3/$temp.BE >$3/$temp.FILTERED
+grep '/* KI:' $2 | sed 's#^[^/]*/\* KI: \(.*\) \*/.*#\1#' >$3/$temp.KI
+
+diff $3/$temp.FILTERED $3/$temp.KI >$3/$temp.diff && echo "Jó!" || (
+echo 'Rossz!'
+cat $3/$temp.diff
+exit 1
+)

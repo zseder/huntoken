@@ -1,0 +1,78 @@
+#!/bin/sh
+# mondatra bontás hibáinak megszámlálása, illetve kiírása
+# meghivas: 
+# hibák számának kijelzése:
+# hun_szeged fájlok 
+# hibák kiírása:
+# hun_szeged -v
+# 
+
+PATH=$(dirname $0):$PATH
+
+alias sum='wc -l'
+
+case $# in
+0) ;;
+*)
+    case $1 in
+  "-h"|"--help") echo 'mondatra bontás hibáinak megszámlálása, illetve kiírása
+a Szeged Korpusz alapján  
+  szeged [-h | --help | -v | -s | -s2] korpusz_állományok
+  -v = hibák kiírása
+  -s = mondatok száma
+  -s2 = kisbetûvel kezdõdõ mondatok száma
+  -h = leírás' >2&
+  exit 1;;
+   
+  "-v") 
+  unalias sum
+  alias sum='cat'
+  shift;;
+  
+  "-s")
+  shift
+  for i in $*
+   do 
+   echo -n "$i "
+   grep "^<s" $i | sum
+   done
+   exit 0;;
+
+  "-s2")
+  shift
+  for i in $*
+   do 
+   echo -n "$i "
+   grep "^<s[^>]*>[a-záéíóöúü]" $i | wc -l
+   done
+   exit 0;;
+
+  "-s3")
+  shift
+  for i in $*
+   do 
+   echo -n "$i "
+   grep "^<s[^>]*>[a-záéíóöúü]" $i | cat
+   done
+   exit 0;;
+
+  esac
+esac
+
+for i in $*
+do
+# állomány nevének kiírása
+echo -n "$i "
+# bekezdéshatárok üres sorokra cserélése
+sed 's/^  <p.*$/<s>/' $i |
+# mondatok kiszurése
+grep '^<s' |
+# nyitó címkék levágása
+sed 's/<[^>]*>//' |
+# mondathatárok jelölése
+huntoken -r |
+# hibás mondathatárok keresése
+egrep  '(<s.*<s>|^[^<])' |
+# ezek megszámlálása
+sum
+done 
