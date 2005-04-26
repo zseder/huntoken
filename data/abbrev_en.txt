@@ -53,6 +53,8 @@ k.
 ln.
 m.
 Mr.
+Mrs.
+Ms.
 mar.
 #max.
 mi.
