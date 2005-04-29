@@ -85,6 +85,8 @@ krt.
 márc.
 mb.
 megh.
+Mlle.
+Mme.
 Mr.
 Mrs.
 Ms.
