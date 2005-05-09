@@ -4,7 +4,7 @@
 .SH NÉV
 huntoken \- (magyar) szövegeket tokenizáló program
 .SH ÁTTEKINTÉS
-huntoken [\-h | \-\-help | \-n | \-r | \-x | ] <bemenet >kimenet
+huntoken [\-h | \-\-help | \-b | \-e | \-n | \-r | \-x | ] <bemenet >kimenet
 .SH LEÍRÁS
 A program szûrõsort indít a standard bemenetrõl érkezõ
 ISO-8859-2 kódolású egyszerû szöveges állományok tokenizálására.
@@ -16,6 +16,14 @@ tokenekhez MSD kódokat is tartalmaz. Az <s> és <w> címkével
 kezdõdõ sorok a bemeneti állomány
 mondatait és szavait tartalmazzák a kimenetben.
 .SH KAPCSOLÓK
+.TP
+.B \-b
+Hosszú (>3996 karakter) mondatok tördelése.
+Enélkül a Huntoken leállhat.
+.TP
+.B \-e
+Angol nyelvû szövegek tokenizálása (még csak a
+mondathatárnál figyelembe vett rövidítéseket állítja át).
 .TP
 .B \-h, \-\-help
 Rövid leírás a program kapcsolóiról.
