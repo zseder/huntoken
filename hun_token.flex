@@ -1,5 +1,7 @@
 %option noyywrap
 
+
+
 /* hun_token - szóra bontó, és nyílttokenosztály-felismerõ lexikai elemzõ */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */
 

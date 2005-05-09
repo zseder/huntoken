@@ -8,25 +8,28 @@ MAN=/usr/share/man
 # mûködését nyomon követni (l. man flex)
 
 #DEBUG=-d
+#CXXFLAGS=-O2 -Wall
+#CXXFLAGS=-g -O0 -Wall -ansi -pedantic
+#CXXFLAGS=-g 
 
 all: bin/hun_clean bin/hun_sentence bin/hun_abbrev bin/hun_abbrev_en bin/hun_sentclean bin/hun_token bin/hun_latin1 bin/hun_sentbreak
 
 bin/hun_clean:  hun_clean.flex
 	@echo hun_clean - karaktereket törlõ, illetve átalakító szûrõ
 	-@flex $(DEBUG) hun_clean.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_clean
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_clean
 	@bin/hun_test bin/hun_clean hun_clean.flex test
 
 bin/hun_sentence: hun_sentence.flex
 	@echo hun_sentence - mondatra bontó szûrõ 
 	-@flex $(DEBUG) hun_sentence.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_sentence
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_sentence
 	@bin/hun_test bin/hun_sentence hun_sentence.flex test
 
 bin/hun_abbrev: __hun_abbrev.flex
 	@echo hun_abbrev - mondatok összevonása a valószínûleg hibás mondathatároknál
 	-@flex $(DEBUG) __hun_abbrev.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_abbrev
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_abbrev
 	@bin/hun_test bin/hun_abbrev __hun_abbrev.flex test
 
 __hun_abbrev.flex: hun_abbrev.flex.m4 data/abbrevations.txt
@@ -38,7 +41,7 @@ __hun_abbrev.flex: hun_abbrev.flex.m4 data/abbrevations.txt
 bin/hun_abbrev_en: __hun_abbrev_en.flex
 	@echo 'hun_abbrev_en - mondatok összevonása a valószínûleg hibás mondathatároknál (angol)'
 	-@flex $(DEBUG) __hun_abbrev_en.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_abbrev_en
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_abbrev_en
 	@bin/hun_test bin/hun_abbrev_en __hun_abbrev_en.flex test
 
 __hun_abbrev_en.flex: hun_abbrev_en.flex.m4 data/abbrev_en.txt
@@ -50,29 +53,30 @@ __hun_abbrev_en.flex: hun_abbrev_en.flex.m4 data/abbrev_en.txt
 bin/hun_sentclean: hun_sentclean.flex
 	@echo hun_sentclean - mondatra bontás eredményét formázza
 	-@flex $(DEBUG) hun_sentclean.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_sentclean
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_sentclean
 	@bin/hun_test bin/hun_sentclean hun_sentclean.flex test
 
 bin/hun_sentbreak: hun_sentbreak.flex
 	@echo hun_sentbreak - hosszú mondatokat tördelõ szûrõ
 	-@flex $(DEBUG) hun_sentbreak.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_sentbreak
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_sentbreak
 	@bin/hun_test bin/hun_sentence hun_sentbreak.flex test
 
 bin/hun_latin1: hun_latin1.flex
 	@echo hun_latin1 - latin-1 - latin-2 karakterátalakítás
 	-@flex $(DEBUG) hun_latin1.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_latin1
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_latin1
 
 bin/hun_token: hun_token.flex
 	@echo hun_token - szóra bontó és nyílttokenosztály-kezelõ
 	-@flex $(DEBUG) hun_token.flex # -i -> ignore case, -f -8 fast
-	@gcc -lfl lex.yy.c -o bin/hun_token
+	@gcc $(CXXFLAGS) -lfl lex.yy.c -o bin/hun_token
 	@bin/hun_test bin/hun_token hun_token.flex test
 
 install:
 	@cp bin/huntoken bin/hun_head bin/hun_clean bin/hun_token bin/hun_abbrev \
-	  bin/hun_abbrev_en bin/hun_sentclean bin/hun_latin1 bin/hun_sentence $(BIN)
+	  bin/hun_abbrev_en bin/hun_sentclean bin/hun_sentbreak bin/hun_latin1 \
+	  bin/hun_sentence $(BIN)
 	@test -d $(MAN)/man1 && cp man/huntoken.1 $(MAN)/man1 || echo "$(MAN)/man1 not exist"
 
 deinstall:

@@ -8,7 +8,7 @@
 /* szóköz, vagy új sor karakter */
 SPACE [ \n]
 
-        #define SLEN 10000
+        #define SLEN 4000
 %%
 
         /* nagyon hosszú mondatok törése */
@@ -21,11 +21,11 @@ SPACE [ \n]
             for (i = 0; i < yyleng / SLEN; i++) {
                 r = s[SLEN];
                 s[SLEN] = '\0';
-                fprintf(stderr,"%s\n</s>\n<s>",s);
+                fprintf(stdout,"%s\n</s>\n<s>",s);
                 s[SLEN] = r;
                 s += SLEN;
             }
-            fprintf(stderr,"%s",s);
+            fprintf(stdout,"%s",s);
         } else {
             printf("%s", yytext);
         }
