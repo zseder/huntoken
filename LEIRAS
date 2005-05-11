@@ -63,10 +63,8 @@ Hiba:
 
 A program a doc/bug_eu_contsitution.txt állományban szereplõ, 4140 karaktert
 meghaladó hosszúságú mondatot nem képes felismerni: a tokenizálás eredménye
-egy üres fájl. Célszerû lehet az ilyen mondatokat egy üres sorral felbontani
-(akár automatikusan is), hogy valamilyen eredményt kapjunk legalább, amíg nem
-sikerül javítani valamilyen módon (pl. a Flex memóriakorlátainak átállításával)
-a programot.
+egy üres fájl. A program -b kapcsolóval indítva ennél kisebb darabokra
+tördeli a sorokat, lehetõvé téve a tokenizálást.
 
 Németh László
 (nemethl@gyorsposta.hu)
