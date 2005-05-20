@@ -22,18 +22,22 @@ Options:
 -e: tokenize English
 -v, --version: version
 License: GNU GPL" 1>&2; exit;;
-    -r) hun_clean | hun_sentence | hun_abbrev | hun_abbrev; exit;;
+    -r) func=flag_r;;
     -x) alias hun_abbrev=cat;;
     -n) alias hun_head=cat;;
     -e) alias hun_abbrev=hun_abbrev_en;;
-    -b) hun_clean | hun_sentence | hun_abbrev | hun_abbrev | hun_sentclean |
-hun_sentbreak | hun_token | hun_abbrev | hun_head;;
-    -v|--version)
-    echo $VERSION; exit;;
+    -b) func=flag_b;;
+    -v|--version) echo $VERSION; exit;;
     *) echo "huntoken: invalid option -- $1"; exit 1;;
     esac
     shift
 done
+
+case $func in
+flag_r) hun_clean | hun_sentence | hun_abbrev | hun_abbrev; exit;;
+flag_b) hun_clean | hun_sentence | hun_abbrev | hun_abbrev | hun_sentclean |
+hun_sentbreak | hun_token | hun_abbrev | hun_head; exit;;
+esac
 
 # cleaning text
 hun_clean | 
