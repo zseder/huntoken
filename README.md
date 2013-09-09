@@ -1,48 +1,52 @@
 Huntoken 1.5.1
+
 2003-2004 (c) Németh László
+
 2013-     (c) Zséder Attila
 
+# Hungarian (and a little bit English) raw text tokenisation 
 
-Hungarian (and a little bit English) raw text tokenisation 
+License: GNU LGPL
 
-License: GNU GPL
+## Compile
 
-Compile
--------
-
+~~~~
 make
 make install
+~~~~
 
-(Need
+Need
 - Unix environment (shell, Unix tools),
 - Flex lexical analyzer generator,
-- M4 macro processor.)
+- M4 macro processor.
 
-Usage
------
+## Usage
 
-(Need
+Need
 - Unix shell, or CYGWIN on Windows
-- sed)
+- sed
 
+~~~~
 huntoken <input_raw_text >xml_output
+~~~~
 
-Options
--------
+## Options
 
--h, --help: help
--r: only sentence boundary detection
--x: processing without hun_abbrev filter
--b: break long sentences (need for tokenising long (>4000 characters) sentences!!!)
--n: output without XML header and footer
--e: tokenize English (set English abbrevations)
--v, --version: version
+- -h, --help: help
+- -r: only sentence boundary detection
+- -x: processing without hun_abbrev filter
+- -b: break long sentences (need for tokenising long (\>4000 characters) sentences!!!)
+- -n: output without XML header and footer
+- -e: tokenize English (set English abbrevations)
+- -v, --version: version
 
 
-Filters
--------
+## Filters
 
 See flex sources, and huntoken shell program.
 
 László Németh
 nemeth@gyorsposta.hu
+
+Attila Zséder
+zseder@gmail.com, zseder@sztaki.mta.hu
