@@ -1,4 +1,7 @@
-Huntoken 1.5.1,  2003-2004 (c) NÈmeth L·szlÛ
+Huntoken 1.5.1
+2003-2004 (c) N√©meth L√°szl√≥
+2013-     (c) Zs√©der Attila
+
 
 Hungarian (and a little bit English) raw text tokenisation 
 
@@ -41,5 +44,5 @@ Filters
 
 See flex sources, and huntoken shell program.
 
-L·szlÛ NÈmeth
+L√°szl√≥ N√©meth
 nemeth@gyorsposta.hu
