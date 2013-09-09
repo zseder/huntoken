@@ -1,12 +1,10 @@
-Huntoken 1.5.1
+# Hungarian (and a little bit English) raw text tokenisation 
+
+License: GNU LGPL
 
 2003-2004 (c) Németh László
 
 2013-     (c) Zséder Attila
-
-# Hungarian (and a little bit English) raw text tokenisation 
-
-License: GNU LGPL
 
 ## Compile
 
