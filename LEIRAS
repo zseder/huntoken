@@ -1,70 +1,70 @@
-Huntoken 1.5.1,  2003-2004 (c) Németh László
+Huntoken 1.5.1,  2003-2004 (c) NÃ©meth LÃ¡szlÃ³
 
 Licenc: GNU GPL
 
-A program használata:
+A program hasznÃ¡lata:
 
-Fordításhoz szükséges programok:
+FordÃ­tÃ¡shoz szÃ¼ksÃ©ges programok:
 
-- Unix héj
-- Unix segédprogramok
-- Flex lexikaielemzõ-készítõ (CYGWIN/dev)
-- M4 makrófeldolgozó (CYGWIN/tools)
+- Unix hÃ©j
+- Unix segÃ©dprogramok
+- Flex lexikaielemzÅ‘-kÃ©szÃ­tÅ‘ (CYGWIN/dev)
+- M4 makrÃ³feldolgozÃ³ (CYGWIN/tools)
 
-Ezek közül a Unix héj, és a sed segédprogram a futtatáshoz is szükséges.
+Ezek kÃ¶zÃ¼l a Unix hÃ©j, Ã©s a sed segÃ©dprogram a futtatÃ¡shoz is szÃ¼ksÃ©ges.
 
-Mindezeket a Linux terjesztések tartalmazzák, egyéb Unix típusú
-operációs rendszerekre a GNU eszközök szabadon hozzáférhetõk
-(http://www.gnu.org). A szükséges programokat Windowson a CYGWIN
-környezet tartalmazza (http://www.cygwin.com).
+Mindezeket a Linux terjesztÃ©sek tartalmazzÃ¡k, egyÃ©b Unix tÃ­pusÃº
+operÃ¡ciÃ³s rendszerekre a GNU eszkÃ¶zÃ¶k szabadon hozzÃ¡fÃ©rhetÅ‘k
+(http://www.gnu.org). A szÃ¼ksÃ©ges programokat Windowson a CYGWIN
+kÃ¶rnyezet tartalmazza (http://www.cygwin.com).
 
-Fordítás:
+FordÃ­tÃ¡s:
 
 make
 
-A fordítás során a lefordított szûrõk tesztelésére is sor
-kerül. A tesztek a test/ alkönyvtárban (meg a flex
-forrásokban) tekinthetõk meg.
+A fordÃ­tÃ¡s sorÃ¡n a lefordÃ­tott szÅ±rÅ‘k tesztelÃ©sÃ©re is sor
+kerÃ¼l. A tesztek a test/ alkÃ¶nyvtÃ¡rban (meg a flex
+forrÃ¡sokban) tekinthetÅ‘k meg.
 
-A program használata:
+A program hasznÃ¡lata:
 
-bin/huntoken <szöveg >eredmény
+bin/huntoken <szÃ¶veg >eredmÃ©ny
 
-Ha kézi ellenõrzéshez akarunk a HOLTLELKEK.hun_-hez hasonlóan jelölt,
-de nem tördelt szöveget kapni, akkor az -r kapcsolót adjuk meg:
+Ha kÃ©zi ellenÅ‘rzÃ©shez akarunk a HOLTLELKEK.hun_-hez hasonlÃ³an jelÃ¶lt,
+de nem tÃ¶rdelt szÃ¶veget kapni, akkor az -r kapcsolÃ³t adjuk meg:
 
-bin/huntoken -r <szöveg >eredmény
+bin/huntoken -r <szÃ¶veg >eredmÃ©ny
 
-Mondatra bontás ellenõrzése:
+Mondatra bontÃ¡s ellenÅ‘rzÃ©se:
 
-bin/hun_szeged xml_állományok (a hibák számát írja ki)
+bin/hun_szeged xml_Ã¡llomÃ¡nyok (a hibÃ¡k szÃ¡mÃ¡t Ã­rja ki)
 
-bin/hun_szeged -v xml_állományok (kijelzi a hibásan jelölt mondatokat)
+bin/hun_szeged -v xml_Ã¡llomÃ¡nyok (kijelzi a hibÃ¡san jelÃ¶lt mondatokat)
 
-bin/hun_szeged -s xml_állományok (kiírja, hogy összesen hány mondat
-van az állományban)
+bin/hun_szeged -s xml_Ã¡llomÃ¡nyok (kiÃ­rja, hogy Ã¶sszesen hÃ¡ny mondat
+van az Ã¡llomÃ¡nyban)
 
-bin/hun_szeged -s2 xml_állományok (kiírja, hogy összesen hány kisbetûvel
-kezdõdõ mondat van az állományban)
+bin/hun_szeged -s2 xml_Ã¡llomÃ¡nyok (kiÃ­rja, hogy Ã¶sszesen hÃ¡ny kisbetÅ±vel
+kezdÅ‘dÅ‘ mondat van az Ã¡llomÃ¡nyban)
 
-bin/hun_szeged -s3 xml_állományok (kiírja a kisbetûvel kezdõdõ mondatokat
-a jelölt szövegbõl)
+bin/hun_szeged -s3 xml_Ã¡llomÃ¡nyok (kiÃ­rja a kisbetÅ±vel kezdÅ‘dÅ‘ mondatokat
+a jelÃ¶lt szÃ¶vegbÅ‘l)
 
-Felhasznált anyag:
+FelhasznÃ¡lt anyag:
 
 Specification and Notation for Lexicon Encoding (COPERNICUS Project 106 "Multext-East" Final Report)
-Bibok Károly: Útmutató a nyílt tokenosztályok kódolásához
-Magyar Ispell helyesírási szótár és Szószablya tesztszótár (rövidítések listája)
-A magyar helyesírás szabályai, 11. kiadás
-Internetes források (azonosítók, stb. megállapításához).
-Linux/Unix kézikönyvoldalak (url, iso-8859-x, recode, flex, stb.)
+Bibok KÃ¡roly: ÃštmutatÃ³ a nyÃ­lt tokenosztÃ¡lyok kÃ³dolÃ¡sÃ¡hoz
+Magyar Ispell helyesÃ­rÃ¡si szÃ³tÃ¡r Ã©s SzÃ³szablya tesztszÃ³tÃ¡r (rÃ¶vidÃ­tÃ©sek listÃ¡ja)
+A magyar helyesÃ­rÃ¡s szabÃ¡lyai, 11. kiadÃ¡s
+Internetes forrÃ¡sok (azonosÃ­tÃ³k, stb. megÃ¡llapÃ­tÃ¡sÃ¡hoz).
+Linux/Unix kÃ©zikÃ¶nyvoldalak (url, iso-8859-x, recode, flex, stb.)
 
 Hiba:
 
-A program a doc/bug_eu_contsitution.txt állományban szereplõ, 4140 karaktert
-meghaladó hosszúságú mondatot nem képes felismerni: a tokenizálás eredménye
-egy üres fájl. A program -b kapcsolóval indítva ennél kisebb darabokra
-tördeli a sorokat, lehetõvé téve a tokenizálást.
+A program a doc/bug_eu_contsitution.txt Ã¡llomÃ¡nyban szereplÅ‘, 4140 karaktert
+meghaladÃ³ hosszÃºsÃ¡gÃº mondatot nem kÃ©pes felismerni: a tokenizÃ¡lÃ¡s eredmÃ©nye
+egy Ã¼res fÃ¡jl. A program -b kapcsolÃ³val indÃ­tva ennÃ©l kisebb darabokra
+tÃ¶rdeli a sorokat, lehetÅ‘vÃ© tÃ©ve a tokenizÃ¡lÃ¡st.
 
-Németh László
+NÃ©meth LÃ¡szlÃ³
 (nemethl@gyorsposta.hu)
