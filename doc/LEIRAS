@@ -1,0 +1,70 @@
+Huntoken 1.5.1,  2003-2004 (c) Németh László
+
+Licenc: GNU GPL
+
+A program használata:
+
+Fordításhoz szükséges programok:
+
+- Unix héj
+- Unix segédprogramok
+- Flex lexikaielemző-készítő (CYGWIN/dev)
+- M4 makrófeldolgozó (CYGWIN/tools)
+
+Ezek közül a Unix héj, és a sed segédprogram a futtatáshoz is szükséges.
+
+Mindezeket a Linux terjesztések tartalmazzák, egyéb Unix típusú
+operációs rendszerekre a GNU eszközök szabadon hozzáférhetők
+(http://www.gnu.org). A szükséges programokat Windowson a CYGWIN
+környezet tartalmazza (http://www.cygwin.com).
+
+Fordítás:
+
+make
+
+A fordítás során a lefordított szűrők tesztelésére is sor
+kerül. A tesztek a test/ alkönyvtárban (meg a flex
+forrásokban) tekinthetők meg.
+
+A program használata:
+
+bin/huntoken <szöveg >eredmény
+
+Ha kézi ellenőrzéshez akarunk a HOLTLELKEK.hun_-hez hasonlóan jelölt,
+de nem tördelt szöveget kapni, akkor az -r kapcsolót adjuk meg:
+
+bin/huntoken -r <szöveg >eredmény
+
+Mondatra bontás ellenőrzése:
+
+bin/hun_szeged xml_állományok (a hibák számát írja ki)
+
+bin/hun_szeged -v xml_állományok (kijelzi a hibásan jelölt mondatokat)
+
+bin/hun_szeged -s xml_állományok (kiírja, hogy összesen hány mondat
+van az állományban)
+
+bin/hun_szeged -s2 xml_állományok (kiírja, hogy összesen hány kisbetűvel
+kezdődő mondat van az állományban)
+
+bin/hun_szeged -s3 xml_állományok (kiírja a kisbetűvel kezdődő mondatokat
+a jelölt szövegből)
+
+Felhasznált anyag:
+
+Specification and Notation for Lexicon Encoding (COPERNICUS Project 106 "Multext-East" Final Report)
+Bibok Károly: Útmutató a nyílt tokenosztályok kódolásához
+Magyar Ispell helyesírási szótár és Szószablya tesztszótár (rövidítések listája)
+A magyar helyesírás szabályai, 11. kiadás
+Internetes források (azonosítók, stb. megállapításához).
+Linux/Unix kézikönyvoldalak (url, iso-8859-x, recode, flex, stb.)
+
+Hiba:
+
+A program a doc/bug_eu_contsitution.txt állományban szereplő, 4140 karaktert
+meghaladó hosszúságú mondatot nem képes felismerni: a tokenizálás eredménye
+egy üres fájl. A program -b kapcsolóval indítva ennél kisebb darabokra
+tördeli a sorokat, lehetővé téve a tokenizálást.
+
+Németh László
+(nemethl@gyorsposta.hu)
