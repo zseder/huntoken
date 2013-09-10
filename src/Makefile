@@ -1,7 +1,6 @@
 BIN = ../bin
 TST = ../tst
 DAT = ../data
-EXAMPLE = ../example
 
 # for flex debugging, uncomment following line:
 #DEBUG=-d
@@ -95,5 +94,5 @@ clean:
 	@rm -f __*
 
 test: $(BIN)/hun_*
-	$(BIN)/huntoken <$(EXAMPLE)/HOLTLELKEK.txt >$(TST)/HOLTLELKEK.xml
-	diff $(EXAMPLE)/HOLTLELKEK.xml $(TST)/HOLTLELKEK.xml
+	$(BIN)/huntoken <$(TST)/HOLTLELKEK.txt >$(TST)/HOLTLELKEK_test.xml
+	diff $(TST)/HOLTLELKEK_tokenized.xml $(TST)/HOLTLELKEK_test.xml
