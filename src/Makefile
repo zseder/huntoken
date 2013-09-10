@@ -16,19 +16,19 @@ $(BIN)/hun_clean:  hun_clean.flex
 	@echo compiling hun_clean
 	-@flex $(DEBUG) hun_clean.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_clean
-	@$(BIN)/hun_test $(BIN)/hun_clean hun_clean.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_clean hun_clean.flex
 
 $(BIN)/hun_sentence: hun_sentence.flex
 	@echo compiling hun_sentence
 	-@flex $(DEBUG) hun_sentence.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_sentence
-	@$(BIN)/hun_test $(BIN)/hun_sentence hun_sentence.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_sentence hun_sentence.flex
 
 $(BIN)/hun_abbrev: __hun_abbrev.flex
 	@echo compiling hun_abbrev
 	-@flex $(DEBUG) __hun_abbrev.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_abbrev
-	@$(BIN)/hun_test $(BIN)/hun_abbrev __hun_abbrev.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_abbrev __hun_abbrev.flex
 
 __hun_abbrev.flex: hun_abbrev.flex.m4 $(DAT)/abbrevations.txt
 	@$(BIN)/hun_macro M4_MACRO_ABBREV $(DAT)/abbrevations.txt >__hun_abbrev.flex.m4
@@ -38,7 +38,7 @@ __hun_abbrev.flex: hun_abbrev.flex.m4 $(DAT)/abbrevations.txt
 $(BIN)/hun_abbrev_en: __hun_abbrev_en.flex
 	-@flex $(DEBUG) __hun_abbrev_en.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_abbrev_en
-	@$(BIN)/hun_test $(BIN)/hun_abbrev_en __hun_abbrev_en.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_abbrev_en __hun_abbrev_en.flex
 
 __hun_abbrev_en.flex: hun_abbrev_en.flex.m4 $(DAT)/abbrev_en.txt
 	@$(BIN)/hun_macro M4_MACRO_ABBREV $(DAT)/abbrev_en.txt >__hun_abbrev_en.flex.m4
@@ -49,13 +49,13 @@ $(BIN)/hun_sentclean: hun_sentclean.flex
 	@echo compiling hun_sentclean
 	-@flex $(DEBUG) hun_sentclean.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_sentclean
-	@$(BIN)/hun_test $(BIN)/hun_sentclean hun_sentclean.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_sentclean hun_sentclean.flex
 
 $(BIN)/hun_sentbreak: hun_sentbreak.flex
 	@echo compiling hun_sentbreak
 	-@flex $(DEBUG) hun_sentbreak.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_sentbreak
-	@$(BIN)/hun_test $(BIN)/hun_sentence hun_sentbreak.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_sentence hun_sentbreak.flex
 
 $(BIN)/hun_latin1: hun_latin1.flex
 	@echo compiling hun_latin1
@@ -66,7 +66,7 @@ $(BIN)/hun_token: hun_token.flex
 	@echo compiling hun_token
 	-@flex $(DEBUG) hun_token.flex # -i -> ignore case, -f -8 fast
 	@gcc $(CXXFLAGS) -lfl lex.yy.c -o $(BIN)/hun_token
-	@$(BIN)/hun_test $(BIN)/hun_token hun_token.flex $(TST)
+	@$(BIN)/hun_test $(BIN)/hun_token hun_token.flex
 
 #install:
 #	@cp $(BIN)/huntoken $(BIN)/hun_head $(BIN)/hun_clean $(BIN)/hun_token $(BIN)/hun_abbrev \
@@ -88,7 +88,7 @@ $(BIN)/hun_token: hun_token.flex
 #	@test -f $(MAN)/man1/huntoken.1 && rm $(MAN)/man1/huntoken.1 || echo "$(MAN)/man1/huntoken.1 not exist"
 	
 clean:
-	@rm -f  *.o lex.yy.c $(TST)/[!C]*
+	@rm -f  *.o lex.yy.c
 	@rm -f $(BIN)/hun_clean $(BIN)/hun_token $(BIN)/hun_abbrev $(BIN)/hun_abbrev_en \
 	   $(BIN)/hun_sentclean $(BIN)/hun_latin1 $(BIN)/hun_sentence $(BIN)/hun_sentbreak
 	@rm -f __*
