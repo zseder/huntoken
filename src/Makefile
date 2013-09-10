@@ -94,5 +94,6 @@ clean:
 	@rm -f __*
 
 test: $(BIN)/hun_*
-	$(BIN)/huntoken <$(TST)/holtlelkek.txt >$(TST)/holtlelkek_test.xml
-	diff $(TST)/holtlelkek_tokenized.xml $(TST)/holtlelkek_test.xml
+	@$(BIN)/huntoken <$(TST)/holtlelkek.txt >$(TST)/holtlelkek_test.xml
+	@diff $(TST)/holtlelkek_tokenized.xml $(TST)/holtlelkek_test.xml \
+	    >/dev/null && echo "Success!" || ( echo "Failed!")
