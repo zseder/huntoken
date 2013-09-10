@@ -1,4 +1,6 @@
 %option noyywrap
+%option nounput
+%option noinput
 
 /* hun_sentclean - mondatra bontó szûrõ kimenetét alakítja tovább */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */

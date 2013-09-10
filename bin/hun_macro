@@ -10,7 +10,7 @@ esac
 
 # megjegyzések kiszûrése
 
-grep "^[^#]" $2 >/tmp/gen.$$
+grep -v "^#" $2 >/tmp/gen.$$
 
 # nagybetûssé alakított kezdõbetûk
 
@@ -40,7 +40,7 @@ echo '"nyug.")' >>/tmp/gen2.$$
 
 cat /tmp/gen2.$$
 
-rm -f /tmp/gen[0-9].$$
+#rm -f /tmp/gen[0-9].$$
 
 
 #s/\.$/"/' /tmp/gen.$$ | sort | uniq | sed "s/$/	|/" >>/tmp/gen2.$$

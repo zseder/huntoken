@@ -1,4 +1,6 @@
 %option noyywrap
+%option nounput
+%option noinput
 
 /* hun_clean - karaktereket törlõ, illetve átalakító szûrõ */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */
@@ -113,7 +115,7 @@ NEWLINE [\n\f\v]
 "&#153"";"?|[\231] { printf("&trade;"); } /* TM */
 
 	/* decimális karakterkód */
-	/* feltesszük, hogy az input latin-2, és a 256-nál kisebb kódok
+	/* feltesszük, hogy az input latin-2, és a 256-nál kisebb kódok */
 	/* is erre vonatkoznak. */
 
 	/* bemenet: "&" max. 5 jegyû szám és esetleg pontosvesszõ */
@@ -263,7 +265,7 @@ NEWLINE [\n\f\v]
 
 "&Acirc"";"? { printf("%c",(char) 194); }
 
-	/* "&Atilde"";"? { printf("%c",(char) 195); } // betû
+	/* "&Atilde"";"? { printf("%c",(char) 195); } */ // betû
 
 	/* BE: &Auml; */
 

@@ -1,4 +1,6 @@
 %option noyywrap
+%option nounput
+%option noinput
 
 /* hun_latin1 - ISO-8859-1 (illetve Windows-1252) betûit entitásokra alakító szûrõ */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */
@@ -79,7 +81,7 @@
 
 	/** "&Acirc"";"? { printf("%c",(char) 194); } */
 
-	/* "&Atilde"";"? { printf("%c",(char) 195); } // betû
+	/* "&Atilde"";"? { printf("%c",(char) 195); } */ // betû
 
 	/* *BE: &Auml; */
 

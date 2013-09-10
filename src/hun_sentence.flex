@@ -1,17 +1,17 @@
 %option noyywrap
+%option nounput
+%option noinput
 
-/* hun_sentence - mondatra bontó szûrõ */
-/* 2003 (c) Németh László <nemethl@gyorsposta.hu> */
+/* hun_sentence - mondatra bontó szûrõ
+ 2003 (c) Németh László <nemethl@gyorsposta.hu> 
 
-/* 											*/
-/*  Makródefiníciók									*/
-/* 											*/
-/*  WORDCHAR: A szavak az ISO-8859-2 betûi mellett számokat, pontot,			*/
-/*  paragrafus-, fok-, százalék- és kötõjelet, valamint HTML entitásként megadva	*/
-/*  nagykötõjelet (&ndash;), valamint kvirtmínuszt (&mdash;) tartalmazhatnak,		*/
-/*  továbbá betûszerepre nem vizsgált decimális UNICODE entitást (például &345;).	*/
-/*  Az ISO-8859-2 betûi a locale csomag alapján automatikusan lettek kiválogatva.	*/
-/*  További információk: man iso-8859-2.									*/
+    Makródefiníciók
+    WORDCHAR: A szavak az ISO-8859-2 betûi mellett számokat, pontot,
+    paragrafus-, fok-, százalék- és kötõjelet, valamint HTML entitásként megadva
+    nagykötõjelet (&ndash;), valamint kvirtmínuszt (&mdash;) tartalmazhatnak,
+    továbbá betûszerepre nem vizsgált decimális UNICODE entitást (például &345;).
+    Az ISO-8859-2 betûi a locale csomag alapján automatikusan lettek kiválogatva.
+    További információk: man iso-8859-2.*/
 
 LATIN1 ("&Agrave"";"?|"&Atilde"";"?|"&Aring"";"?|"&AElig"";"?|"&Egrave"";"?|"&Ecirc"";"?|"&Igrave"";"?|"&Iuml"";"?|"&ETH"";"?|"&Ntilde"";"?|"&Ograve"";"?|"&Oslash"";"?|"&Ugrave"";"?|"&THORN"";"?|"&agrave"";"?|"&atilde"";"?|"&aring"";"?|"&aelig"";"?|"&egrave"";"?|"&ecirc"";"?|"&igrave"";"?|"&iuml"";"?|"&eth"";"?|"&ntilde"";"?|"&ograve"";"?|"&oslash"";"?|"&ugrave"";"?|"&thorn"";"?|"&yuml"";"?)
 LATIN1LOWER ("&agrave"";"?|"&atilde"";"?|"&aring"";"?|"&aelig"";"?|"&egrave"";"?|"&ecirc"";"?|"&igrave"";"?|"&iuml"";"?|"&eth"";"?|"&ntilde"";"?|"&ograve"";"?|"&oslash"";"?|"&ugrave"";"?|"&thorn"";"?|"&yuml"";"?)
@@ -40,7 +40,7 @@ SNTCHAR [^.?!\n]
 SNTBEGIN [^?!\n ]"\n"?
 
 /* egyszerû mondat */
-/* XXX Az írásjelek itt nem tapadók, hogy elfogadja a
+/* XXX Az írásjelek itt nem tapadók, hogy elfogadja a */
 /* helyesírásnak nem megfelelõ szövegeket is: Szép az idõ ! */
 SIMPLESNT ({SNTCHAR}"\n"?)*{BOUNDARY}*
 

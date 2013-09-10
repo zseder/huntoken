@@ -1,4 +1,6 @@
 %option noyywrap
+%option nounput
+%option noinput
 
 /* hun_sentbreak - hosszú mondatok tördelése */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */

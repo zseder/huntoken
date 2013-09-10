@@ -1,9 +1,15 @@
 %option noyywrap
+%option nounput
+%option noinput
 
 /* hun_abbrev - mondatok összevonása a valószínûleg hibásan megállapított mondathatároknál */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */
 
 %s NUMBEGIN
+
+%{
+    int print_abbrev(const char * s);
+%}
 
 /* nagybetû és paragrafusjel */
 
@@ -179,16 +185,17 @@ ABBREV (M4_MACRO_ABBREV)
  */
 int print_abbrev(const char * s)
 {
-	char buff[8192];
-	int i, j = 0;
-	for (i = 0; i < strlen(s); i++) {
-		if (strncmp(s+i, "<s>", 3) == 0) i+=2;
-		else if (strncmp(s+i, "</s>", 4) == 0) i+=3;
-		else { 
-			buff[j] = s[i];
-			j++;
-		}
-	}
-	buff[j] = '\0';
-	printf("%s",buff);
+    char buff[8192];
+    int i, j = 0;
+    for (i = 0; i < strlen(s); i++) {
+        if (strncmp(s+i, "<s>", 3) == 0) i+=2;
+        else if (strncmp(s+i, "</s>", 4) == 0) i+=3;
+        else { 
+            buff[j] = s[i];
+            j++;
+        }
+    }
+    buff[j] = '\0';
+    printf("%s",buff);
+    return 0;
 }

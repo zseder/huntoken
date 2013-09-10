@@ -1,11 +1,15 @@
 %option noyywrap
-
-
+%option nounput
+%option noinput
 
 /* hun_token - szóra bontó, és nyílttokenosztály-felismerõ lexikai elemzõ */
 /* 2003 (c) Németh László <nemethl@gyorsposta.hu> */
 
-/****************************************************************************************/
+%{
+    int open_begin(int msd1, int msd2);
+    int print_ana();
+%}
+
 /* Állapotok */
 
 %s S SENTENCE_BEGIN SENTENCE_END OPEN_BEGIN SFX SFX_K SFX_E SFX_J SFX_END SFX_NOT
@@ -3042,64 +3046,66 @@ SMILEY ([:;B]"-"[)(]+)
  */
 int open_begin(int msd1, int msd2)
 {
-		msd[1] = msd1;
-		msd[2] = msd2;
-		sfx[0] = '\0';
-		if (strlen(yytext) < BUFSIZ) {
-			strcpy(tok, yytext);
-		} else {
-			strcpy(tok,"ERROR: TOO LONG TOKEN!");
-		}
-		BEGIN(OPEN_BEGIN);
+    msd[1] = msd1;
+    msd[2] = msd2;
+    sfx[0] = '\0';
+    if (strlen(yytext) < BUFSIZ) {
+        strcpy(tok, yytext);
+    } else {
+        strcpy(tok,"ERROR: TOO LONG TOKEN!");
+    }
+    BEGIN(OPEN_BEGIN);
+    return 0;
 }
 
 int print_ana()
 {
-		switch (multitoken) {
-			case HOUR_DOT_MIN: // 10.32
-				msd[2] = 'd';
-				printf(FORMAT_ANAV, tok, msd);
-			case MON_SLASH_DAY: // 01/06
-			case NUM_DOT_NUM:  // 80.5
-				msd[1] = 'i';
-				msd[2] = '-';
-				printf(FORMAT_ANAV, tok, msd);
-				break;
-			case HOUR_COLON_MIN:  // 1:10
-				msd[2] = 'q';
-				printf(FORMAT_ANAV, tok, msd);
-			case NUM_COLON_NUM:  // 1:6
-				msd[2] = 'r';
-				printf(FORMAT_ANAV, tok, msd);
-				msd[2] = 'f';
-				printf(FORMAT_ANAV, tok, msd);
-				break;
-			case MON_DASH_DAY: // 10-15
-				msd[2] = 'r';
-				printf(FORMAT_ANAV, tok, msd);
-			case NUM_DASH_NUM: // 1-3
-				msd[2] = 'f';
-				printf(FORMAT_ANAV, tok, msd);
-				break;
-			case PATH_OR_WEB: // valami.comról
-				msd[2] = 'w';
-				printf(FORMAT_ANAV, tok, msd);
-				break;
-			case NUM_LETTER: // 2a
-			case PATH_OR_IDENT: // 1.a-ról
-				msd[1] = 'i';
-				msd[2] = '-';
-				printf(FORMAT_ANAV, tok, msd);
-				break;
-			case NUM_SLASH_NUM: // 3/4
-				msd[1] = 'n';
-				msd[2] = 'f';
-                                if ((strlen(msd)>=12) && (msd[11] == 's')) {
-				    msd[4] = '?';
-				    msd[5] = '?';
-                                    msd[6] = '\0';
-                                }
-				printf(FORMAT_ANAV, tok, msd);
-				break;
-		}		
+    switch (multitoken) {
+        case HOUR_DOT_MIN: // 10.32
+            msd[2] = 'd';
+            printf(FORMAT_ANAV, tok, msd);
+        case MON_SLASH_DAY: // 01/06
+        case NUM_DOT_NUM:  // 80.5
+            msd[1] = 'i';
+            msd[2] = '-';
+            printf(FORMAT_ANAV, tok, msd);
+            break;
+        case HOUR_COLON_MIN:  // 1:10
+            msd[2] = 'q';
+            printf(FORMAT_ANAV, tok, msd);
+        case NUM_COLON_NUM:  // 1:6
+            msd[2] = 'r';
+            printf(FORMAT_ANAV, tok, msd);
+            msd[2] = 'f';
+            printf(FORMAT_ANAV, tok, msd);
+            break;
+        case MON_DASH_DAY: // 10-15
+            msd[2] = 'r';
+            printf(FORMAT_ANAV, tok, msd);
+        case NUM_DASH_NUM: // 1-3
+            msd[2] = 'f';
+            printf(FORMAT_ANAV, tok, msd);
+            break;
+        case PATH_OR_WEB: // valami.comról
+            msd[2] = 'w';
+            printf(FORMAT_ANAV, tok, msd);
+            break;
+        case NUM_LETTER: // 2a
+        case PATH_OR_IDENT: // 1.a-ról
+            msd[1] = 'i';
+            msd[2] = '-';
+            printf(FORMAT_ANAV, tok, msd);
+            break;
+        case NUM_SLASH_NUM: // 3/4
+            msd[1] = 'n';
+            msd[2] = 'f';
+            if ((strlen(msd)>=12) && (msd[11] == 's')) {
+                msd[4] = '?';
+                msd[5] = '?';
+                msd[6] = '\0';
+            }
+            printf(FORMAT_ANAV, tok, msd);
+            break;
+    }        
+    return 0;
 }
