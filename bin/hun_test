@@ -3,8 +3,8 @@
 # Usage: hun_test program source_file_with_test_comments testdir
 
 case $# in
-0|1|2)
-    echo "Usage: hun_test program source_file_with_test_comments testdir"
+0|1)
+    echo "Usage: hun_test program source_file_with_test_comments"
     exit 1;
 esac
 
