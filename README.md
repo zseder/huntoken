@@ -47,4 +47,4 @@ László Németh
 nemeth@gyorsposta.hu
 
 Attila Zséder
-zseder@gmail.com, zseder@sztaki.mta.hu
+zseder.hlt@gmail.com, zseder@nytud.mta.hu
